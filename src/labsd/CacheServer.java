@@ -88,7 +88,8 @@ public class CacheServer extends Thread{
             }        
             
             // si se completan la cantidad de llamados, actualizar cache estatica
-            if((cache.getLlamados()%ActualizarEstatica) == 0){
+            if((cache.getLlamados()%ActualizarEstatica) == 0 && cache.getLlamados() > 1){
+            
                 cache.updateCacheEstatica();
             }
             

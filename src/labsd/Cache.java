@@ -157,8 +157,32 @@ public class Cache {
     
     public void updateCacheEstatica(){
         
-        String menosUtilizadoEstatica = cacheEstatica.entrySet().iterator().next().getKey();
-        int valueMenosUtilizadoEstatica = cacheEstatica.get(menosUtilizadoEstatica);
+        String menosUtilizadoEstatica;
+        int valueMenosUtilizadoEstatica ;
+           
+        String menosUtilizadaDinamica;
+        int valueMenosUtilizadoDinamico;
+        
+        for (int i = 0; i < estaticoRangoUpdate; i++) {
+            
+            menosUtilizadoEstatica = cacheEstatica.entrySet().iterator().next().getKey();
+            valueMenosUtilizadoEstatica = cacheEstatica.get(menosUtilizadoEstatica);
+            
+            for (int j = 0; j < largoDinamico; j++) {
+                
+                menosUtilizadaDinamica = cacheDinamica.entrySet().iterator().next().getKey();
+                valueMenosUtilizadoDinamico = cacheDinamica.get(menosUtilizadaDinamica);
+                
+                if(valueMenosUtilizadoDinamico > valueMenosUtilizadoEstatica){
+                    cacheEstatica.remove(menosUtilizadoEstatica);
+                    cacheEstatica.put(menosUtilizadaDinamica, valueMenosUtilizadoDinamico);
+                    break;
+                }
+                
+            }
+        }
+        
+       
            
     }
     /*
